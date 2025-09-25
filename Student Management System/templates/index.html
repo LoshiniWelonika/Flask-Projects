@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+  <title>Student Management System</title> 
+{% endblock %}
+
+
+{% block body%}
+  <!-- Student Registration Form -->
+  <section class="form-section">
+    <h2>Register Student</h2> 
+    <form action="/" method="POST">
+      <label for="name">Full Name:</label> 
+      <input type="text" id="name" name="name" placeholder="Enter student name" required>
+
+      <label for="class">Age:</label>
+      <input type="number" id="class" name="age" placeholder="Enter class" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Enter email" required>
+
+      <button type="submit" value="submit">Add Student</button>
+    </form>
+  </section>
+
+  <section class="table-section">
+  <h2>Student Records</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Roll No</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if students|length < 1 %}
+        <tr>
+          <td colspan="5">No records found</td>
+        </tr>
+      {% else %}
+        {% for student in students %}
+        <tr>
+          <td>{{ student.id }}</td>
+          <td>{{ student.name }}</td>
+          <td>{{ student.age }}</td>
+          <td>{{ student.email }}</td>
+          <td>
+            <!-- Update Button -->
+            <a href="/update/{{ student.id }}" class="btn update">Update</a>
+            <!-- Delete Button -->
+            <a href="/delete/{{ student.id }}" class="btn delete">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      {% endif %}
+    </tbody>
+  </table>
+</section>
+
+
+
+  <footer>
+    <p>&copy; 2025 Student Management System</p>
+  </footer>
+{% endblock %}

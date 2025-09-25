@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+  <title>Student Management System</title> 
+{% endblock %}
+
+
+{% block body%}
+  <!-- Student Registration Form -->
+  <section class="form-section">
+    <h2>Update Student Details</h2> 
+    <form action="/update/{{ student.id }}" method="POST">
+      <label for="name">Full Name:</label> 
+      <input type="text" id="name" name="name" placeholder="Enter student name" required>
+
+      <label for="class">Age:</label>
+      <input type="number" id="class" name="age" placeholder="Enter class" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Enter email" required>
+
+      <button type="submit" value="submit">Update Student</button>
+    </form>
+</section>
+
+
+
+  <footer>
+    <p>&copy; 2025 Student Management System</p>
+  </footer>
+{% endblock %}
