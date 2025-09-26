@@ -10,14 +10,14 @@ app = Flask(__name__)
 #Homepage
 @app.route("/")
 def index():
-    query = request.args.get("query", "latest")
+    query = request.args.get("query", "latest") 
     url = f"https://newsapi.org/v2/everything?q={query}&apiKey={NEWS_API_KEY}"
     response = requests.get(url) 
     news_data = response.json() 
     
     articles = news_data.get('articles',[])
 
-    return render_template("index.html", articles=articles)
+    return render_template("index.html", articles=articles, query=query)
 
 
 

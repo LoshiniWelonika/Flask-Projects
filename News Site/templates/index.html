@@ -3,6 +3,22 @@
 {% block body %}
 
  <div class="news-container">
+     <nav class="navbar"> 
+            <div class="logo">Welcome To Insta News</div>
+            <ul class="nav-links">
+                <li><a href="/?query=latest">Home</a></li>
+                <li><a href="/?query=business">Business</a></li>
+                <li><a href="/?query=entertainment">Entertainment</a></li>
+                <li><a href="/?query=sports">Sports</a></li>
+                <li><a href="/?query=technology">Technology</a></li>
+                <li><a href="/?query=science">Science</a></li>  
+            </ul>
+            <form class="search-form" method="get" action="/">
+                <input type="text" name="query" placeholder="Search news...">
+                <button type="submit">Search</button>
+            </form>
+        </nav> 
+
         <h1>Latest News</h1>
         
         <div class="news-grid">
