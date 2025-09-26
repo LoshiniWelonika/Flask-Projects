@@ -2,6 +2,23 @@
 
 {% block body %}
 
-<h1> Hello Everyone </h1>
+ <div class="news-container">
+        <h1>Latest News</h1>
+        
+        <div class="news-grid">
+            {% for article in articles %}
+            <div class="news-card">
+                {% if article.urlToImage %}
+                    <img src="{{ article.urlToImage }}" alt="News Image">
+                {% endif %}
+                <div class="news-content">
+                    <h2><a href="{{ article.url }}" target="_blank">{{ article.title }}</a></h2>
+                    <p>{{ article.description }}</p>
+                    <span class="source">Source: {{ article.source.name }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 
 {% endblock %}
