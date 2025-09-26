@@ -14,9 +14,9 @@ def index():
     url = f"https://newsapi.org/v2/everything?q={query}&apiKey={NEWS_API_KEY}"
     response = requests.get(url) 
     news_data = response.json() 
-    print(news_data)
+    #print(news_data)
 
-    return "Testing"
+    return render_template("index.html")
 
 
 
