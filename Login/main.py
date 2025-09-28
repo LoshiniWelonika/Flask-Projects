@@ -34,7 +34,24 @@ def home():
         return redirect(url_for('dashboard'))
     return render_template("index.html")
 
+@app.route("/login", methods="POST")
+def login():
+    #Collect info from the form
+    username = request.form["username"]
+    password = request.form["password"]
+    user = User.query.filter_by(username=username).first() 
 
+    if user and user.check_password(password):
+        session['username'] = username
+        return redirect(url_for('dashboard'))
+    else:
+        return render_template("index.html")
+
+
+    #Check if the details in the db
+
+
+    #Otherwise show the home page
 
 
 
