@@ -12,10 +12,25 @@
       <input type="password" id="password" name="password" placeholder="Enter your password" required>
 
       <div class="button-group">
-        <button type="submit" class="login-btn">Login</button>
-        <button type="button" class="register-btn">Register</button>
+        <button type="submit" class="login-btn" onclick="setActionForm('login')">Login</button>
+        <button type="button" class="register-btn" onclick="setActionForm('register')">Register</button>
       </div>
     </form>
   </div>
+
+<script>
+  function setActionForm(action){
+    let form = document.getElementById("auth-form");
+    if (action === "login"){
+      form.action = "{{url_for('login')}}" ;
+      form.method = 'post';
+      form.submit() 
+    }if (action === "register"){
+      form.action = "{{url_for('register')}}" ;
+      form.method = 'post';
+      form.submit() 
+    }
+  }
+</script>
 
 {% endblock %}
