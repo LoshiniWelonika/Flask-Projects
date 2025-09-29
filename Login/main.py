@@ -17,21 +17,19 @@ db = SQLAlchemy(app)
 oauth = OAuth(app) 
 
 google = oauth.register(
-    name = 'google',
-    client_id = CLIENT_ID,
-    client_secret = CLIENT_SECRET,
-    server_metadata_uri='https://accounts.google.com/.well-known/openid-configuration',
-    client_kwargs = {'scope': 'openid profile email'}
-) 
-
-
+    name='google',
+    client_id=CLIENT_ID,
+    client_secret=CLIENT_SECRET,
+    server_metadata_url='https://accounts.google.com/.well-known/openid-configuration',
+    client_kwargs={'scope': 'openid profile email'}
+)
 
 #Database Model
 class User(db.Model):
     #Class Variables
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(25), unique=True, nullable=False)
-    password_hash = db.Column(db.String(150), nullable=False)
+    password_hash = db.Column(db.String(150), nullable=True)
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -95,7 +93,7 @@ def logout():
 @app.route('/login/google')
 def login_google():
     try:
-        redirect_uri = url_for("authorize", _external=True)
+        redirect_uri = url_for("authorize_google", _external=True)
         return google.authorize_redirect(redirect_uri)
     except Exception as e:
         app.logger.error(f"Error during login:{str(e)}")

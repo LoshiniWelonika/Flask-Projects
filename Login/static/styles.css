@@ -49,12 +49,14 @@ header{
 }
 
 .button-group {
+  align-self: center;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .login-container button {
-  width: 48%;
+  width: 100%;
   padding: 10px;
   border: none;
   border-radius: 8px;
@@ -79,4 +81,40 @@ header{
 
 .register-btn:hover {
   background-color: #a29bfe;
+}
+
+.login-google {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  color: #444;
+  font-size: 16px;
+  font-weight: 500;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.login-google:hover {
+  background-color: #f7f7f7;
+  border-color: #ccc;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+
+.login-google:active {
+  background-color: #eeeeee;
+}
+
+.login-google::before {
+  content: "";
+  background: url("https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg") no-repeat center center;
+  background-size: 20px 20px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
 }
