@@ -32,8 +32,12 @@ with app.app_context():
 def home():
     return jsonify({"message" : "Welcome to the travel api"})
 
+#https://www.travelsite.com/destinations
+@app.route("/destinations", methods=["GET"])
+def get_destinations():
+    destinations = Destination.query.all() 
 
-
+    return jsonify([destinations.to_dict()] for destination in destinations)
 
 
 
