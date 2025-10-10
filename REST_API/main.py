@@ -37,7 +37,7 @@ def home():
 def get_destinations():
     destinations = Destination.query.all() 
 
-    return jsonify([destinations.to_dict()] for destination in destinations)
+    return jsonify([destination.to_dict() for destination in destinations])
 
 #https://www.travelsite.com/destinations/2
 @app.route("/destinations/<int:destination_id>", methods=["GET"])
@@ -70,9 +70,9 @@ def update_destination(destination_id):
 
     destination = Destination.query.get(destination_id)
     if destination:
-        destination.destination = data.get["destination", destination.destination]
-        destination.country = data.get["country", destination.country]
-        destination.rating = data.get["rating", destination.rating]
+        destination.destination = data.get("destination", destination.destination)
+        destination.country = data.get("country", destination.country)
+        destination.rating = data.get("rating", destination.rating)
     
         db.session.commit()
 
