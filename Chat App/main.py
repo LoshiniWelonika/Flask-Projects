@@ -42,7 +42,28 @@ app.config.from_object(Config)
 app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
 
 
+#Set up the socket 
+socketIO = SocketIO(
+    app,
+    cors_allowed_origins=app.config("CORS_ORIGINS"),
+    logger=True
+    engineio_logger=True
+)
 
+
+#Make a database / Dict
+active_users: Dict[str, dict] = {}
+
+
+#Make a user
+def generate_guest_username() -> str:
+    timestamp = datetime.now().strftime("%H%M")
+    return f"Guest{timestamp}{random.randint(1000.9999)}"
+
+
+#Home Route
+@app.route("/")
+def index():
 
 
 
